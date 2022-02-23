@@ -1,7 +1,25 @@
 /* Our CSS file. */
+#container{
+    height: 100%;
+    width: 100%;
+}
 
+.list{
+    height: 50%;
+    width: 50%;
+    float: left;
+}
+.img{
+    height:50%;
+    width: 50%;
+    float: left;
 
-.container, .content {
-width: 100%;
-height: 100%;
+}
+
+.p{
+    text-align: center;
+    float: left;
+    height: 50%;
+    width: 50%;
+    margin: 180px 0px;
 }
