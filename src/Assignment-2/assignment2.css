@@ -1,7 +1,85 @@
 /* Our CSS file. */
 
-
-.container, .content {
-width: 100%;
-height: 100%;
+#container{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    border: 1px solid black;
+}
+.main-header{
+    border: 1px solid black;
+    margin: 10px 5px;
+}
+.logo-icon{
+    float: left;
+    border: 1px solid black;
+    width: 100px;
+    height: 50px;
+    margin: 15px 5px 15px 5px;
+}
+form{
+    float:right;
+    border: 1px solid black;
+    margin: 30px 5px;
+}
+.navigation{
+    border: 1px solid;
+    margin: 80px 5px 5px 5px;
+}
+.links{
+    display: flex;
+}
+.links li{
+    padding: 5px 120px;
+}
+li{
+    list-style-type: none;
+}
+li a{
+    text-decoration: none;
+    
+}
+.middle-content{
+    display: flex;
+    border: 1px solid black;
+    margin: 5px 5px;
+}
+.aside-1{
+    border: 1px solid black;
+    margin: 5px;
+}
+.display-1{
+    padding-left: 0px;
+}
+.display-1 li{
+    padding: 10px 40px 48px 10px;
+}
+.section{
+    border: 1px solid black;
+    margin: 5px 5px 5px 5px;
+}
+.upper{
+    display: flex;
+}
+.lower{
+    display: flex;
+}
+.post-img{
+    width: 285px;
+    height: 340px;
+    padding: 30px;
+}
+.aside-2{
+    border: 1px solid black;
+    margin: 5px 5px 5px 5px;
+}
+#right-sidebar-menu li{
+    padding: 10px 30px 50px 0px;
+}
+.footer{
+    border: 1px solid black;
+    margin: 6px 5px;
+}
+p{
+    text-align: center;
 }
