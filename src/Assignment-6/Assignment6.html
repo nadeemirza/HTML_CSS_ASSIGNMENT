@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<script src="bundle.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<div id="container">
+
+	<!-- Start your code from here -->
+		<main>
+			<form class="form">
+				<div class="info">
+					<p>
+						<label class="label">Characters:</label>
+						<span class="count">00</span>
+					</p>
+					<p>
+						<label class="label">Thread:</label>
+						<span class="thread-count">00</span>
+					</p>
+				</div>
+				<div class="container">
+					<textarea class="text-area" placeholder="The character limit for each threard is 275 words" required wrap="soft" onkeyup="textInfo(this)"></textarea>
+				</div>
+			<button type="submit" class="btn">Thread</button>	
+			</form>
+			<div class="thread-box">
+	  
+				<div class="thread">
+				  <p>
+					<span class="sl"></span> <br />
+					Your threads will be here.<br /><br />
+					 The character limit for each tweet is 275. <br /><br />
+				  </p>
+				  <br />
+				  <br />
+				</div>
+			</div>
+		</main>
+
+
+	<!-- End your code -->
+
+	</div>
+
+	<script type="text/javascript">
+	// write your javascript code here
+	const dom=(s)=>document.querySelector(s); 
+	const form=dom('.form')
+	const charCount=dom('.count')
+	const threadCount=dom('.thread-count')
+	const threadBox=dom('.thread-box')
+
+	const size=275;
+	let threadArr=[]
+
+	function textInfo(e){
+		let length=e.value.length
+		charCount.innerHTML=length
+		threadCount.innerHTML=Math.ceil(length/size)
+		length > size ? (e.style.color = "dodgerblue"): (e.style.color = "seagreen");
+	}
+	function displayThread(listParent, arr = []) {
+    listParent.innerHTML = arr.map((el, i) => {
+        return `
+        <article class="thread" data-index="${i}">
+        <div class="tools">
+        <span class="index">${i < 9 ? '0' + (i + 1): i + 1}</span>
+        <span class="close" data-index="${i}">✖️</span>
+        <span class="copy" data-index="${i}">📋</span>
+        </div>
+        <p class="tweet">
+        ${el}
+        </p>
+        </article>
+        `;
+    })
+    .join("");	
+}
+
+function clearThread(str) {
+    let splitOnWhiteSpace = str.split(' ');
+
+    let result = [];
+
+    let totalLength = 0;
+    let sentence = '';
+    for (let i = 0; i < splitOnWhiteSpace.length; i++) {
+
+        let curWord = splitOnWhiteSpace[i];
+        let curWordLength = curWord.length;
+
+        sentence += curWord + ' ';
+
+        totalLength += curWordLength + 1;
+
+        if (totalLength >= size) {
+
+            sentence = sentence.trim();
+
+            let lengthDiff = sentence.length - size;
+
+            if (lengthDiff > 0) {
+                let lastIndexOfWhiteSpace = sentence.lastIndexOf(' ');
+
+                sentence = sentence.slice(0, lastIndexOfWhiteSpace);
+                i--;
+            }
+            result.push(sentence);
+
+            totalLength = 0;
+            sentence = '';
+        }
+
+
+
+        if (i === splitOnWhiteSpace.length -1 && totalLength <= size && sentence !== '') {
+            result.push(sentence.trim());
+        }
+    }
+
+    return result;
+
+}
+
+function thread(e) {
+    e.preventDefault();
+
+    const thread = dom(".thread");
+    threadArr = clearThread(dom(".text-area").value);
+
+    displayThread(thread, threadArr);
+}
+
+form.addEventListener("submit", thread);
+
+function deleteThread(e) {
+	e.preventDefault();
+    const [el,index] = [e.target,
+        e.target.dataset.index];
+    let txt = e.target.dataset.para;
+
+    if (el.classList.contains("close")) {
+
+        threadArr.splice(index, 1);
+
+        displayThread(threadBox,threadArr)
+    }
+}
+
+threadBox.addEventListener("click", deleteThread);
+
+
+
+
+	</script>
+
+</body>
+<script>
+/* DO NOT EDIT THIS CODE- WRITTERN TO PREVENT CSS CACHING */	  
+	// Get HTML head element
+	var head = document.getElementsByTagName('HEAD')[0]; 
+	// Create new link Element
+	var link = document.createElement('link');
+	// set the attributes for link element 
+	link.rel = 'stylesheet'; 
+	link.type = 'text/css';
+	link.href = './assignment6.css?v='+ new Date().getTime(); 
+	// Append link element to HTML head
+	head.appendChild(link); 
+	/* DO NOT EDIT THIS CODE- WRITTERN TO PREVENT CSS CACHING */	  
+</script> 
+</html>
